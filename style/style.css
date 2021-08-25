@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@100;300;400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Tourney:ital,wght@0,400;1,900&display=swap');
+
+:root {
+  --ff-ppal : 'Quicksand', sans-serif;
+  --ff-logo: 'Tourney', cursive;
+  --clr-bg: #393E46;
+}
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  font-size: 1.6rem;
+  background-color: var(--clr-bg);
+  font-family: var(--ff-ppal);
+  overflow: hidden;
+  margin: 0;
+  height: 100vh;
+
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 768px; 
+}
+
+
+
+h1 {
+  font-size: 5rem;
+}
+h2 {
+  font-size: 3.5rem;
+}
+p {
+  font-size: 1.6rem;
+}
+
+.logo {
+  font-family: var(--ff-logo);
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 2rem;
+  margin-top: 1rem;
+  border-radius: .5rem
+  }
+
+.anillo {
+  position: absolute;
+  top: 47.5%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff ;
+}
+.anillo .centro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--clr-bg);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  transform: translate(50%, 50%);
+}
+.anillo .centro i {
+  color: #fff;
+}
+
+.juego {
+  position: relative;
+  width: 90vw;
+  height: 60vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows:  45% 45% 10% ;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.juego__boton {
+  border: 2px white solid;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+}
+
+.stats {
+  grid-column: 1 / 3;
+  grid-row: 3;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(24, 24, 24, 0.5);
+  border-radius: 5rem;
+
+}
+
+.stats h3 {
+  font-family: var(--ff-ppal);
+  color: #fff;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  text-align: left;
+  margin: 0;
+}
+
+
+
+
+
+@media (max-width: 500px) {
+  .logo {
+    padding: 1rem;
+  }
+  .logo h1{
+    font-size: 3rem
+  }
+  .stats {
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  .stats h3 {
+    font-size: 1.5rem;
+  }
+
+}
+
+
+
+/*
+.centro {
+  border: 2px red solid;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transform: translate(50%);
+}
+*/
