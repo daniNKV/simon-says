@@ -19,18 +19,28 @@
     </nav>
 
     <main>
-        
+
         <div class="juego">
-            <div class="anillo">
-                <div class="centro">
-                    <i class="far fa-play-circle fa-4x"></i>
-                </div>
+            <div class="anillo oculto" id="anillo"></div>
+            <div class="anillo__centro oculto" id="centroBtn">
+                <i class="far fa-play-circle fa-4x"></i>
+                <h3>Jugar</h3>
             </div>
-            <div class="juego__boton" id="boton1"></div>
-            <div class="juego__boton" id="boton2"></div>
-            <div class="juego__boton" id="boton3"></div>
-            <div class="juego__boton" id="boton4"></div>
-            <div class="stats">
+          
+            <div data-sound="1" class="juego__boton" id="boton1"></div>
+           
+            <div data-sound="2" class="juego__boton" id="boton2"></div>
+            
+            <div data-sound="3" class="juego__boton" id="boton3"></div>
+            
+            <div data-sound="4" class="juego__boton" id="boton4"></div>
+           
+            <audio id='1' src="./sound/c5.mp3"></audio>
+            <audio id='2' src="./sound/e5.mp3"></audio>
+            <audio id='3' src="./sound/f5.mp3"></audio>
+            <audio id='4' src="./sound/g5.mp3"></audio>
+
+            <div class="stats oculto">
                 <h3>Score: <span class="score">325000</span></h3>
 
                 <h3>Best Score: <span class="top-score">1023333002</span></h3>
