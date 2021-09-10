@@ -21,19 +21,30 @@
     <main>
 
         <div class="juego">
-            <div class="anillo oculto" id="anillo"></div>
-            <div class="anillo__centro oculto" id="centroBtn">
+            <!--<div class="anillo" id="anillo"></div>
+            <div class="anillo__centro" id="centroBtn">
                 <i class="far fa-play-circle fa-4x"></i>
                 <h3>Jugar</h3>
+            </div>-->
+
+            <div class="config">
+                <div class="anillo" id="iniciar-juego">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="centro">                                    
+                    <h3>Jugar</h3>
+                </div>
             </div>
           
-            <div data-sound="1" class="juego__boton" id="boton1"></div>
+            <div data-sound="1" class="juego__boton oculto" id="boton1"></div>
            
-            <div data-sound="2" class="juego__boton" id="boton2"></div>
+            <div data-sound="2" class="juego__boton  oculto" id="boton2"></div>
             
-            <div data-sound="3" class="juego__boton" id="boton3"></div>
+            <div data-sound="3" class="juego__boton  oculto" id="boton3"></div>
             
-            <div data-sound="4" class="juego__boton" id="boton4"></div>
+            <div data-sound="4" class="juego__boton  oculto" id="boton4"></div>
            
             <audio id='1' src="./sound/c5.mp3"></audio>
             <audio id='2' src="./sound/e5.mp3"></audio>

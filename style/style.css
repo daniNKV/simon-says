@@ -59,6 +59,7 @@ p {
 .logo h1 {
   margin: 0;
 }
+/*
 .anillo {
   position: absolute;
   background: rgb(232,33,56);
@@ -103,6 +104,78 @@ p {
   color: #fff;
   cursor: pointer;
 }
+*/
+
+.config {
+  position: relative;
+  justify-self: end;
+  transform: translate(50%, 60%);
+  
+  
+}
+
+
+.anillo {
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  background: linear-gradient(144deg, rgba(232,33,56,1) 16%, rgba(227,225,52,1) 47%, rgba(46,208,246,1) 69%, rgba(43,198,107,1) 100%);
+  animation: rotation 2s linear infinite;
+  cursor: pointer;
+}
+.centro {
+  cursor: pointer;
+  position: absolute;
+  top: 15%;
+  left: 20%
+}
+.centro h3 {
+  text-align: center;
+  font-family: var(--ff-logo);
+  font-size: 4rem;
+  color: #fff;
+  
+
+}
+
+.anillo::after {
+  content: '';
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  right: 25px;
+  bottom: 25px;
+  background-color: var(--clr-bg);
+  border-radius: 50%;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.anillo span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(144deg, rgba(232,33,56,1) 16%, rgba(227,225,52,1) 47%, rgba(46,208,246,1) 69%, rgba(43,198,107,1) 100%);
+}
+
+.anillo span:nth-child(1) {
+  filter: blur(5px);
+}
+.anillo span:nth-child(2) {
+  filter: blur(10px);
+}
+.anillo span:nth-child(3) {
+  filter: blur(25px);
+}
+
+
 
 .juego {
   position: relative;
