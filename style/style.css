@@ -61,27 +61,45 @@ p {
 }
 .anillo {
   position: absolute;
+  background: rgb(232,33,56);
+  background: linear-gradient(144deg, rgba(232,33,56,1) 16%, rgba(227,225,52,1) 47%, rgba(46,208,246,1) 69%, rgba(43,198,107,1) 100%);
   top: 47.5%;
   left: 50%;
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff ;
-  box-shadow: 1px 1px 5px rgba(0,0,0,1);
+  box-shadow: 1px 1px 15px rgba(0,0,0,1);
 }
-.anillo .centro {
+
+
+.anillo__centro {
+  position: absolute;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--clr-bg);
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
-  transform: translate(25%, 25%);
- 
+  z-index: 10;
+  top: 47.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0px 0px 33px -3px rgba(0,0,0,0.5);
+
 }
-.anillo .centro i {
+.anillo__centro h3 {
+  font-family: var(--ff-logo);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 4rem;
+}
+.anillo__centro i {
+  display: none;
   color: #fff;
   cursor: pointer;
 }
@@ -94,32 +112,34 @@ p {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows:  45% 45% 10% ;
   gap: 2rem;
-  margin-top: 2.5rem;
+  margin-top: 3rem;
 }
+
+
 
 .juego__boton {
   cursor: pointer;
   border: none;
   width: 100%;
   height: 100%;
-  border-radius: 3rem;
+  border-radius: 2rem;
   box-shadow: 0 0 30px 10px rgba(0,0,0,0.3);
   transition: box-shadow 0.05s ease-in-out;
+  filter: brightness(0.9);
 
 }
 .juego__boton:focus {
   outline: none;
 }
 .juego__boton:active {
-  transform: scale(0.99);
+  transform: scale(0.98);
   box-shadow: 0 0 30px 10px rgba(0,0,0,0.2);
   z-index: -1;
   filter: blur(2px);
+  transition: transform 0.05s ease-in-out;
 }
 
-.juego__boton::after {
-  background: rgba(0,0,0,1);
-}
+
 
 .stats {
   grid-column: 1 / 3;
@@ -175,44 +195,56 @@ p {
 */
 
 
+/*  Color botones   */
+
 #boton1 {
   border: none;
-  background: rgb(175,29,46);
-  background: linear-gradient(319deg, rgba(175,29,46,1) 39%, rgb(195, 40, 40) 100%);
-}
+  background: #E82239;
+  background: -webkit-linear-gradient(top left, #E82239, #E0593B);
+  background: -moz-linear-gradient(top left, #E82239, #E0593B);
+  background: linear-gradient(to bottom right, #E82239, #E0593B);
 
+}
 #boton1:active {
-  box-shadow: 0px 0px 45px 0px rgb(175,29,46);
+  box-shadow: 0px 0px 45px 10px rgb(175,29,46);
+  box-shadow: 0px 0px 45px 0px rgb(223, 50, 73);
   background: radial-gradient(circle, rgb(236, 139, 150) 0%, rgb(195, 40, 40) 100%);
 
-
 }
+
+
 
 #boton2 {
-
   background: rgb(46,208,246);
   background: linear-gradient(319deg, rgba(46,208,246,1) 0%, rgba(46,127,246,1) 100%);
-}
 
+
+}
 #boton2:active {
   box-shadow: 0px 0px 45px 0px rgba(46,208,246,1);
   background: radial-gradient(circle, rgb(211, 247, 255) 0%, rgb(40, 216, 255) 100%);
-
 }
+
+
+
 #boton3 {
   background: rgb(43,198,107);
   background: linear-gradient(319deg, rgba(43,198,107,1) 0%, rgba(43,181,198,1) 100%);
-}
 
+
+}
 #boton3:active {
   box-shadow: 0px 0px 45px 0px rgba(43,198,107,1);
   background: radial-gradient(circle, rgb(186, 255, 215) 0%, rgba(43,198,107,1) 100%);
-
-
 }
+
+
 
 #boton4 {
   background: #E3E134;
+  background: linear-gradient(190deg, rgb(240, 196, 76) 0%, rgb(240, 225, 22) 100%);
+
+
 }
 #boton4:active {
   box-shadow: 0px 0px 45px 0px rgba(227,225,52,1);
@@ -220,3 +252,9 @@ p {
 
 
 }
+
+
+.oculto {
+  display: none;
+}
+
