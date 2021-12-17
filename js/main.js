@@ -1,31 +1,43 @@
-
-const $botones = document.querySelectorAll('.juego__boton')
-const $btnInicio = document.querySelector('.inicio .centro')
-const $elementoInicio = document.querySelector('.inicio')
-const $juego = document.querySelector('.juego')
-const $stats = document.querySelector('.stats')
-const boton1 = document.getElementById('boton1')
-const sonido1 = document.getElementById('sonido1')
-
-const boton3 = document.getElementById('boton3')
-
-const SONIDOS = {
-    play1: sonido1.play(),
+ const DOM = { 
+     $botones : document.querySelectorAll('.juego__boton'),
+     botonInicio : document.getElementById('iniciar-juego'),
+    
+     tablero: document.querySelector('.juego'),
+     stats : document.querySelector('.stats'),
+     boton1 : document.getElementById('boton1'),
+     sonido1 : document.getElementById('sonido1'),
+    
+     boton3 : document.getElementById('boton3')
 }
 
-$btnInicio.addEventListener('click', () => iniciarJuego())
+
+
+
+DOM.botonInicio.addEventListener('click', (e) => iniciarJuego)
 
 
 
 function iniciarJuego() {
-    ocultarBotonInicio()
-    mostrarElementos()
+    ocultarBotonInicio
+    mostrarTablero()
+    console.log('click')
 }
 
-function ocultarBotonInicio() {
-    $elementoInicio.classList.add('oculto')
+function ocultarBotonInicio(){
+    DOM.botonInicio.classList.add('oculto')
 }
-function mostrarElementos() {
+function mostrarTablero() {
+    DOM.
+}
+function ocultarElemento(elemento) {
+    elemento.classList.add('oculto')
+}
+
+function mostrarElemento(elemento){
+    elemento.classList.remove('oculto')
+
+}
+function mostrarTablero() {
     $botones.forEach(boton => boton.classList.remove('oculto'))
     $stats.classList.remove('oculto')
 }

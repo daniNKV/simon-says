@@ -59,58 +59,12 @@ p {
 .logo h1 {
   margin: 0;
 }
-/*
-.anillo {
-  position: absolute;
-  background: rgb(232,33,56);
-  background: linear-gradient(144deg, rgba(232,33,56,1) 16%, rgba(227,225,52,1) 47%, rgba(46,208,246,1) 69%, rgba(43,198,107,1) 100%);
-  top: 47.5%;
-  left: 50%;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff ;
-  box-shadow: 1px 1px 15px rgba(0,0,0,1);
-}
 
-
-.anillo__centro {
-  position: absolute;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--clr-bg);
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  z-index: 10;
-  top: 47.5%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: inset 0px 0px 33px -3px rgba(0,0,0,0.5);
-
-}
-.anillo__centro h3 {
-  font-family: var(--ff-logo);
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
-  font-size: 4rem;
-}
-.anillo__centro i {
-  display: none;
-  color: #fff;
-  cursor: pointer;
-}
-*/
 
 .inicio {
   position: relative;
-  justify-self: end;
-  transform: translate(50%, 60%);
-  
+  align-self: center;
+  margin-top: 15vh;
   
 }
 
