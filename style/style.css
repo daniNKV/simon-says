@@ -68,6 +68,18 @@ p {
   
 }
 
+.centro {
+  position: absolute;
+  top: 37.5%;
+  left: 20%;
+  margin: 0;
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--ff-logo);
+  font-size: 4rem;
+  color: #fff;
+
+}
 
 .anillo {
   position: relative;
@@ -77,20 +89,6 @@ p {
   background: linear-gradient(144deg, rgba(232,33,56,1) 16%, rgba(227,225,52,1) 47%, rgba(46,208,246,1) 69%, rgba(43,198,107,1) 100%);
   animation: rotation 2s linear infinite;
   cursor: pointer;
-}
-.centro {
-  cursor: pointer;
-  position: absolute;
-  top: 15%;
-  left: 20%
-}
-.centro h3 {
-  text-align: center;
-  font-family: var(--ff-logo);
-  font-size: 4rem;
-  color: #fff;
-  
-
 }
 
 .anillo::after {
@@ -152,7 +150,7 @@ p {
   border-radius: 2rem;
   box-shadow: 0 0 30px 10px rgba(0,0,0,0.3);
   transition: box-shadow 0.05s ease-in-out;
-  filter: brightness(0.9);
+  filter: brightness(1);
 
 }
 .juego__boton:focus {
@@ -163,6 +161,7 @@ p {
   box-shadow: 0 0 30px 10px rgba(0,0,0,0.2);
   z-index: -1;
   filter: blur(2px);
+  filter: brightness(1.3);
   transition: transform 0.05s ease-in-out;
 }
 

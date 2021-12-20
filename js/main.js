@@ -1,33 +1,65 @@
  const DOM = { 
-     $botones : document.querySelectorAll('.juego__boton'),
-     botonInicio : document.getElementById('iniciar-juego'),
-    
-     tablero: document.querySelector('.juego'),
-     stats : document.querySelector('.stats'),
-     boton1 : document.getElementById('boton1'),
-     sonido1 : document.getElementById('sonido1'),
-    
-     boton3 : document.getElementById('boton3')
+    botonInicio : document.getElementById('iniciar-juego'),
+    tablero: document.getElementById('tablero'),
+    stats : document.querySelector('.stats'),
+    boton1 : document.getElementById('boton1')
+}
+const boton1 = document.getElementById('boton1')
+
+
+const Tablero = {
+    botones : {
+        1 : document.getElementById('boton1'),
+        2 : document.getElementById('boton2'),
+        3 : document.getElementById('boton3'),
+        4 : document.getElementById('boton4')
+    }
 }
 
 
 
+class Partida  {
+    jugadasSimon = []
+    jugadasJugador = []
+    score = 0
+    ronda = 0
 
-DOM.botonInicio.addEventListener('click', (e) => iniciarJuego)
+    static agregarJugada() {
+
+    }
+
+    static validarJugada() {
+
+    }
+
+}
 
 
+DOM.botonInicio.addEventListener('click', (e) => iniciarJuego())
+boton1.addEventListener('click', (e) => console.log('click'), true)
 
 function iniciarJuego() {
-    ocultarBotonInicio
+    ocultarBotonInicio()
     mostrarTablero()
-    console.log('click')
+
+    iniciarRonda();
+
 }
+
+
+function iniciarRonda() {
+    let partidaActual = new Partida;
+    console.log(partidaActual);
+}
+
+
+
 
 function ocultarBotonInicio(){
     DOM.botonInicio.classList.add('oculto')
 }
 function mostrarTablero() {
-    DOM.
+    DOM.tablero.classList.remove('oculto')
 }
 function ocultarElemento(elemento) {
     elemento.classList.add('oculto')
@@ -37,10 +69,7 @@ function mostrarElemento(elemento){
     elemento.classList.remove('oculto')
 
 }
-function mostrarTablero() {
-    $botones.forEach(boton => boton.classList.remove('oculto'))
-    $stats.classList.remove('oculto')
-}
+
 
 
 function reproducirSonido(key) {
