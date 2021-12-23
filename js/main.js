@@ -1,11 +1,12 @@
+
+ 
  const DOM = { 
     botonInicio : document.getElementById('iniciar-juego'),
     tablero: document.getElementById('tablero'),
     stats : document.querySelector('.stats'),
-    boton1 : document.getElementById('boton1')
+    boton1 : document.getElementById('boton1'),
+    botones : document.querySelectorAll('juego__boton')
 }
-const boton1 = document.getElementById('boton1')
-
 
 const Tablero = {
     botones : {
@@ -16,44 +17,69 @@ const Tablero = {
     }
 }
 
+class Juego  {
+    siguienteRonda() {
+        
+        this.agregarRonda()
+        this.agregarJugada()
+    }
+
+    agregarJugada() {
+        return this.jugadasSimon.push((Math.floor(Math.random() * 4) + 1))
+    }
+
+    agregarRonda() {
+        return this.ronda += 1
+    }
+
+    reproducirJugadaSimon() {
+
+    }
+
+    validarJugada() {
+
+    }
+
+    ganar() {
+
+    }
+
+    perder() {
+        
+    }
 
 
-class Partida  {
+
+}
+
+class Partida extends Juego {
     jugadasSimon = []
     jugadasJugador = []
     score = 0
     ronda = 0
 
-    static agregarJugada() {
-
-    }
-
-    static validarJugada() {
-
-    }
-
 }
 
+DOM.botonInicio.addEventListener('click', () => iniciarTablero())
+let partidaActual = new Partida;
 
-DOM.botonInicio.addEventListener('click', (e) => iniciarJuego())
-boton1.addEventListener('click', (e) => console.log('click'), true)
-
-function iniciarJuego() {
+function iniciarTablero() {
     ocultarBotonInicio()
     mostrarTablero()
 
-    iniciarRonda();
+    let partidaActual = new Partida
+
+    partidaActual.siguienteRonda()
+    console.log(partidaActual)
+
 
 }
 
 
-function iniciarRonda() {
-    let partidaActual = new Partida;
-    console.log(partidaActual);
+
+
+function escucharJugador() {
 }
-
-
-
 
 function ocultarBotonInicio(){
     DOM.botonInicio.classList.add('oculto')
