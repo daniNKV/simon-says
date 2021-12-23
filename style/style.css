@@ -145,6 +145,7 @@ p {
 .juego__boton {
   cursor: pointer;
   border: none;
+  outline: none;
   width: 100%;
   height: 100%;
   border-radius: 2rem;
@@ -224,7 +225,6 @@ p {
 /*  Color botones   */
 
 #boton1 {
-  border: none;
   background: #E82239;
   background: -webkit-linear-gradient(top left, #E82239, #E0593B);
   background: -moz-linear-gradient(top left, #E82239, #E0593B);
