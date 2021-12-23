@@ -19,7 +19,6 @@ const Tablero = {
 
 class Juego  {
     siguienteRonda() {
-        
         this.agregarRonda()
         this.agregarJugada()
     }
@@ -36,7 +35,16 @@ class Juego  {
 
     }
 
+    escucharJugador() {
+
+        
+    }
+
     validarJugada() {
+
+    }
+
+    compararJugadas() {
 
     }
 
@@ -60,31 +68,42 @@ class Partida extends Juego {
 
 }
 
-DOM.botonInicio.addEventListener('click', () => iniciarTablero())
-let partidaActual = new Partida;
+DOM.botonInicio.addEventListener('click', () => mostrarTablero())
 
-function iniciarTablero() {
+function mostrarTablero() {
     ocultarBotonInicio()
-    mostrarTablero()
+    traerTablero()
 
     let partidaActual = new Partida
 
-    partidaActual.siguienteRonda()
-    console.log(partidaActual)
+    iniciarRonda(partidaActual)
 
 
 }
 
 
+function iniciarRonda(partida) {
+    partida.siguienteRonda()
 
+    partida.reproducirJugadaSimon()
 
-function escucharJugador() {
+    partida.escucharJugador()
+
+    partida.validarJugada()
+
+    if(partida.compararJugadas === true) {
+        iniciarRonda()
+    }else {
+        partida.perder()
+    }
 }
+
+
 
 function ocultarBotonInicio(){
     DOM.botonInicio.classList.add('oculto')
 }
-function mostrarTablero() {
+function traerTablero() {
     DOM.tablero.classList.remove('oculto')
 }
 function ocultarElemento(elemento) {
