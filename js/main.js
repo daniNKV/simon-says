@@ -24,7 +24,7 @@ const siguienteRonda = (objeto) => {
     jugadas.simon = agregarJugada(obtenerSecuenciaSimon(jugadas))
     nuevaRonda.ronda = aumentarRonda(ronda)
 
-    return Object.freeze(nuevaRonda)
+    return nuevaRonda
 
 }
 
@@ -53,19 +53,19 @@ DOM.botonInicio.addEventListener('click', () => iniciarPartida())
 
 function iniciarPartida() {
     prepararTablero()    
-    
-    const partidaActual = new Partida
 
-    iniciarRonda(partidaActual)
+    const nuevaPartida = new Partida
+    const partida = iniciarRonda(nuevaPartida)
 
-    return partidaActual
-
+    return partida
 }
 
 function iniciarRonda(objeto) {
     const nuevaRonda = siguienteRonda(objeto)
+    let {jugadas, score, maxScore, ronda} = nuevaRonda
 
-    console.log(nuevaRonda)
+    reproducirSecuencia(obtenerSecuenciaSimon(jugadas))
+
 
 
 }
