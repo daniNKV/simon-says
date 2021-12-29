@@ -1,5 +1,4 @@
 
- 
  const DOM = { 
     botonInicio : document.getElementById('iniciar-juego'),
     tablero: document.getElementById('tablero'),
@@ -8,97 +7,74 @@
     botones : document.querySelectorAll('juego__boton')
 }
 
-const Tablero = {
-    botones : {
-        1 : document.getElementById('boton1'),
-        2 : document.getElementById('boton2'),
-        3 : document.getElementById('boton3'),
-        4 : document.getElementById('boton4')
+class Partida {
+    jugadas = { 
+        simon: [],
+        humano: []
     }
-}
-
-class Juego  {
-    siguienteRonda() {
-        this.agregarRonda()
-        this.agregarJugada()
-    }
-
-    agregarJugada() {
-        return this.jugadasSimon.push((Math.floor(Math.random() * 4) + 1))
-    }
-
-    agregarRonda() {
-        return this.ronda += 1
-    }
-
-    reproducirJugadaSimon() {
-
-    }
-
-    escucharJugador() {
-
-        
-    }
-
-    validarJugada() {
-
-    }
-
-    compararJugadas() {
-
-    }
-
-    ganar() {
-
-    }
-
-    perder() {
-        
-    }
-
-
-
-}
-
-class Partida extends Juego {
-    jugadasSimon = []
-    jugadasJugador = []
     score = 0
-    ronda = 0
+    maxScore = 0
+    ronda = 0   
+}
+
+const siguienteRonda = (objeto) => {
+    let nuevaRonda = Object.assign({}, objeto)
+    let {jugadas, ronda} = nuevaRonda
+
+    jugadas.simon = agregarJugada(obtenerSecuenciaSimon(jugadas))
+    nuevaRonda.ronda = aumentarRonda(ronda)
+
+    return Object.freeze(nuevaRonda)
 
 }
 
-DOM.botonInicio.addEventListener('click', () => mostrarTablero())
+const obtenerSecuenciaSimon = (objetoJugadas) => {
+    const secuencia = objetoJugadas.simon
+    return secuencia
+}
+const aumentarRonda = (number) => {
+    const sumarRonda = number + 1
+    return sumarRonda
+}
 
-function mostrarTablero() {
-    ocultarBotonInicio()
-    traerTablero()
+const agregarJugada = (array) => {
+    return array.concat(crearJugadaRandom(4))
+}
 
-    let partidaActual = new Partida
+const crearJugadaRandom = (cantidadBotones) => {
+    return Math.floor((Math.random()) * cantidadBotones) + 1
+}
+const obtenerRonda = (array) => {
+    return array.length
+}
+
+
+DOM.botonInicio.addEventListener('click', () => iniciarPartida())
+
+function iniciarPartida() {
+    prepararTablero()    
+    
+    const partidaActual = new Partida
 
     iniciarRonda(partidaActual)
 
+    return partidaActual
+
+}
+
+function iniciarRonda(objeto) {
+    const nuevaRonda = siguienteRonda(objeto)
+
+    console.log(nuevaRonda)
+
 
 }
 
 
-function iniciarRonda(partida) {
-    partida.siguienteRonda()
-
-    partida.reproducirJugadaSimon()
-
-    partida.escucharJugador()
-
-    partida.validarJugada()
-
-    if(partida.compararJugadas === true) {
-        iniciarRonda()
-    }else {
-        partida.perder()
-    }
+function prepararTablero() {
+    ocultarBotonInicio()
+    traerTablero()
 }
-
-
 
 function ocultarBotonInicio(){
     DOM.botonInicio.classList.add('oculto')
