@@ -4,12 +4,22 @@
     tablero: document.getElementById('tablero'),
     stats : document.querySelector('.stats'),
     boton1 : document.getElementById('boton1'),
-    botones : document.querySelectorAll('juego__boton')
+    botones : document.querySelectorAll('.juego__boton')
 }
+
+const Tablero = {
+    botones : {
+        1 : document.getElementById('boton1'),
+        2 : document.getElementById('boton2'),
+        3 : document.getElementById('boton3'),
+        4 : document.getElementById('boton4')
+    }
+}
+
 
 class Partida {
     jugadas = { 
-        simon: [],
+        simon: [2,3,4,2,3],
         humano: []
     }
     score = 0
@@ -27,6 +37,34 @@ const siguienteRonda = (objeto) => {
     return nuevaRonda
 
 }
+const juegaSimon = (array) => {
+    const secuenciaAReproducir = array
+
+    const secuenciaReproducida = reproducirSecuencia(secuenciaAReproducir)
+
+
+}
+
+const reproducirSecuencia = async (secuencia) => {
+    const {...boton} = Tablero.botones
+
+    for( movimiento of secuencia ) {
+        const movimientoAReproducir = boton[movimiento]
+
+        activarBoton(movimientoAReproducir)
+    }
+
+}
+
+const esperar = (tiempo) => {
+    return new Promise((resolucion) => setTimeout(resolucion, tiempo))
+  }
+
+
+const escucharJugador = (array) => {
+    habilitarInput()
+}
+
 
 const obtenerSecuenciaSimon = (objetoJugadas) => {
     const secuencia = objetoJugadas.simon
@@ -55,26 +93,42 @@ function iniciarPartida() {
     prepararTablero()    
 
     const nuevaPartida = new Partida
+
     const partida = iniciarRonda(nuevaPartida)
 
     return partida
 }
 
-function iniciarRonda(objeto) {
-    const nuevaRonda = siguienteRonda(objeto)
+function iniciarRonda(objetoRonda) {
+    const nuevaRonda = siguienteRonda(objetoRonda)
     let {jugadas, score, maxScore, ronda} = nuevaRonda
-
-    reproducirSecuencia(obtenerSecuenciaSimon(jugadas))
-
-
-
+    
+    
+    const jugoSimon = juegaSimon(obtenerSecuenciaSimon(jugadas))
 }
 
+// SIDE EFFECTS
+function habilitarInput() {
+    DOM.botones.forEach(
+        boton => boton.addEventListener('click', 
+            e => {
+                const elemento = e.target
+                activarBoton(elemento)
+            })
+    )
+}
+habilitarInput()
+
+function activarBoton(elemento) {
+    elemento.classList.add('activo')
+    setTimeout(() => elemento.classList.remove('activo'), 250)
+}
 
 function prepararTablero() {
     ocultarBotonInicio()
     traerTablero()
 }
+
 
 function ocultarBotonInicio(){
     DOM.botonInicio.classList.add('oculto')
@@ -82,16 +136,6 @@ function ocultarBotonInicio(){
 function traerTablero() {
     DOM.tablero.classList.remove('oculto')
 }
-function ocultarElemento(elemento) {
-    elemento.classList.add('oculto')
-}
-
-function mostrarElemento(elemento){
-    elemento.classList.remove('oculto')
-
-}
-
-
 
 function reproducirSonido(key) {
     document.getElementById(key).play()
