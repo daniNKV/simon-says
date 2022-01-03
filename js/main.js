@@ -39,9 +39,9 @@ const siguienteRonda = (objeto) => {
 }
 const juegaSimon = (array) => {
     const secuenciaAReproducir = array
-
     const secuenciaReproducida = reproducirSecuencia(secuenciaAReproducir)
 
+    return secuenciaReproducida
 
 }
 
@@ -49,11 +49,11 @@ const reproducirSecuencia = async (secuencia) => {
     const {...boton} = Tablero.botones
 
     for( movimiento of secuencia ) {
-        const movimientoAReproducir = boton[movimiento]
-
-        activarBoton(movimientoAReproducir)
+        await esperar(1000)
+        activarBoton(boton[movimiento])
     }
 
+    return true
 }
 
 const esperar = (tiempo) => {
@@ -67,12 +67,11 @@ const escucharJugador = (array) => {
 
 
 const obtenerSecuenciaSimon = (objetoJugadas) => {
-    const secuencia = objetoJugadas.simon
-    return secuencia
+    return objetoJugadas.simon
+    
 }
 const aumentarRonda = (number) => {
-    const sumarRonda = number + 1
-    return sumarRonda
+    return number++
 }
 
 const agregarJugada = (array) => {
@@ -105,19 +104,15 @@ function iniciarRonda(objetoRonda) {
     
     
     const jugoSimon = juegaSimon(obtenerSecuenciaSimon(jugadas))
+
+    const jugoHumano = juegaHumano()
 }
 
 // SIDE EFFECTS
 function habilitarInput() {
     DOM.botones.forEach(
-        boton => boton.addEventListener('click', 
-            e => {
-                const elemento = e.target
-                activarBoton(elemento)
-            })
-    )
+        boton => boton.addEventListener('click', e => activarBoton(e.target)))
 }
-habilitarInput()
 
 function activarBoton(elemento) {
     elemento.classList.add('activo')
