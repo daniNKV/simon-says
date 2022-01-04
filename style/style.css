@@ -2,9 +2,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Tourney:ital,wght@0,400;1,900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
 :root {
   --ff-ppal : 'Quicksand', sans-serif;
-  --ff-logo: 'Tourney', cursive;
+  --ff-bkp1: 'Tourney', cursive;
+  --ff-logo: 'Press Start 2P', cursive;
+  --ff-msj: 'Staatliches', cursive;
   --clr-bg: #393E46;
 }
 html {
@@ -39,7 +45,7 @@ main {
 
 
 h1 {
-  font-size: 5rem;
+  font-size: 4rem;
 }
 h2 {
   font-size: 3.5rem;
@@ -51,7 +57,6 @@ p {
 .logo {
   font-family: var(--ff-logo);
   color: #fff;
-  border: 1px solid #fff;
   padding: 2rem;
   margin-top: 2rem;
   border-radius: .5rem
@@ -62,27 +67,28 @@ p {
 
 
 .inicio {
-  position: relative;
   align-self: center;
   margin-top: 15vh;
+  display: grid;
   
 }
 
 .centro {
-  position: absolute;
-  top: 37.5%;
-  left: 20%;
   margin: 0;
+  grid-area: a;
+  place-self: center center;
+  z-index: 1;
   cursor: pointer;
   text-align: center;
   font-family: var(--ff-logo);
-  font-size: 4rem;
+  font-size: 2.5rem;
+  text-transform: uppercase;
   color: #fff;
 
 }
 
 .anillo {
-  position: relative;
+  grid-area: a;
   width: 20rem;
   height: 20rem;
   border-radius: 50%;
@@ -175,8 +181,8 @@ p {
   align-items: center;
   justify-content: center;
   background-color: rgba(24, 24, 24, 0.5);
-  border-radius: 5rem;
-  padding: 2rem
+  border-radius: .5rem;
+  padding: 1rem;
 
 }
 .juego__info .stats {
@@ -197,7 +203,7 @@ p {
 
 .mensajes h3 {
   font-family: var(--ff-logo);
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .stats h3 {
