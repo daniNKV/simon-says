@@ -138,12 +138,12 @@ p {
 .juego {
   position: relative;
   width: 90vw;
-  height: 60vh;
+  height: 65vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows:  10% repeat(2, 1fr) ;
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 
