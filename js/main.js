@@ -13,7 +13,9 @@ const Tablero = {
         2 : document.getElementById('boton2'),
         3 : document.getElementById('boton3'),
         4 : document.getElementById('boton4')
-    }
+    },
+
+    mensaje : document.getElementById('mensaje') 
 }
 
 
@@ -37,11 +39,10 @@ const siguienteRonda = (objeto) => {
     return nuevaRonda
 
 }
-const juegaSimon = (array) => {
-    const secuenciaAReproducir = array
-    const secuenciaReproducida = reproducirSecuencia(secuenciaAReproducir)
-
-    return secuenciaReproducida
+const juegaSimon = (secuenciaAReproducir) => {
+    anunciarTurno('Simon');
+    
+    return reproducirSecuencia(secuenciaAReproducir)
 
 }
 
@@ -102,13 +103,24 @@ function iniciarRonda(objetoRonda) {
     const nuevaRonda = siguienteRonda(objetoRonda)
     let {jugadas, score, maxScore, ronda} = nuevaRonda
     
-    
-    const jugoSimon = juegaSimon(obtenerSecuenciaSimon(jugadas))
+    const rondaSimon = obtenerSecuenciaSimon(jugadas)
 
-    const jugoHumano = juegaHumano()
+    const rondaHumano = juegaHumano(juegaSimon(rondaSimon), rondaSimon)
 }
 
+const juegaHumano = async (funcionAEsperar, objetoAComparar) => {
+    const simonTermino = await funcionAEsperar
+
+    
+}   
+
 // SIDE EFFECTS
+function anunciarTurno(jugador) {
+    const lugarMensaje = Tablero.mensaje
+
+    lugarMensaje.innerText = `Juega ${jugador}... `
+}
+
 function habilitarInput() {
     DOM.botones.forEach(
         boton => boton.addEventListener('click', e => activarBoton(e.target)))
