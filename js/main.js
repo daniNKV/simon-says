@@ -21,7 +21,7 @@ const Tablero = {
 
 class Partida {
     jugadas = { 
-        simon: [2,3,4,2,3],
+        simon: [2,3],
         humano: []
     }
     score = 0
@@ -62,10 +62,6 @@ const esperar = (tiempo) => {
   }
 
 
-const escucharJugador = (array) => {
-    habilitarInput()
-}
-
 
 const obtenerSecuenciaSimon = (objetoJugadas) => {
     return objetoJugadas.simon
@@ -99,20 +95,44 @@ function iniciarPartida() {
     return partida
 }
 
-function iniciarRonda(objetoRonda) {
-    const nuevaRonda = siguienteRonda(objetoRonda)
-    let {jugadas, score, maxScore, ronda} = nuevaRonda
+function iniciarRonda(rondaAnterior) {
+    const rondaActual = siguienteRonda(rondaAnterior)
+    let {jugadas, score, maxScore, ronda} = rondaActual
     
     const rondaSimon = obtenerSecuenciaSimon(jugadas)
 
     const rondaHumano = juegaHumano(juegaSimon(rondaSimon), rondaSimon)
+/*
+    if(rondaHumano === true) {
+        iniciarRonda(rondaActual)
+    } */
 }
 
-const juegaHumano = async (funcionAEsperar, objetoAComparar) => {
-    const simonTermino = await funcionAEsperar
+const juegaHumano = async (simonTermino, rondaAComparar) => {
+    await simonTermino
+    
+    anunciarTurno('usted')
+
+    const humanoGano = validarRonda(rondaAComparar)
+
+//    return humanoGano === true ? true : false
+
+
+
+}  
+
+const validarRonda = (rondaValida) => {
 
     
-}   
+}
+
+const escucharJugador = (inputCorrecto) => {
+    const inputJugador = habilitarInput(validarInput(), inputCorrecto)
+}
+
+const validarInput = (botonPresionado, botonCorrecto) => {
+    return botonPresionado === botonCorrecto ? true : false
+}
 
 // SIDE EFFECTS
 function anunciarTurno(jugador) {
@@ -121,9 +141,14 @@ function anunciarTurno(jugador) {
     lugarMensaje.innerText = `Juega ${jugador}... `
 }
 
-function habilitarInput() {
+function habilitarInput(funcionValidar, inputCorrecto) {
     DOM.botones.forEach(
-        boton => boton.addEventListener('click', e => activarBoton(e.target)))
+        boton => boton.addEventListener('click', e =>  {
+            activarBoton(e.target)
+
+            return funcionValidar(e.target, inputCorrecto)
+        })
+    )
 }
 
 function activarBoton(elemento) {
