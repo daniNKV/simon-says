@@ -95,17 +95,19 @@ function iniciarPartida() {
     return partida
 }
 
-function iniciarRonda(rondaAnterior) {
+async function iniciarRonda(rondaAnterior) {
     const rondaActual = siguienteRonda(rondaAnterior)
     let {jugadas, score, maxScore, ronda} = rondaActual
     
     const rondaSimon = obtenerSecuenciaSimon(jugadas)
 
-    const rondaHumano = juegaHumano(juegaSimon(rondaSimon), rondaSimon)
-/*
-    if(rondaHumano === true) {
-        iniciarRonda(rondaActual)
-    } */
+    const rondaHumano = await juegaHumano(juegaSimon(rondaSimon), rondaSimon)
+
+    if(!rondaHumano) {
+        perder()
+    }
+
+    iniciarRonda(rondaActual)
 }
 
 const juegaHumano = async (simonTermino, rondaAComparar) => {
@@ -113,25 +115,30 @@ const juegaHumano = async (simonTermino, rondaAComparar) => {
     
     anunciarTurno('usted')
 
-    const humanoGano = validarRonda(rondaAComparar)
-//    return humanoGano === true ? true : false
+    const humanoGano = await validarRonda(rondaAComparar)
+
+    return humanoGano === true ? true : false
 
 
 
 }  
 
 const validarRonda = async (rondaCompleta) => {
-    let validacion = false;
+    let validacion = Boolean(true);
     for( jugadaCorrecta of rondaCompleta ) {
-        const jugadaRealizada = await capturarInput();
-        const jugadaValidada = validarInput(jugadaRealizada, jugadaCorrecta)
+        const jugadaValidada = validarInput(await capturarInput(), jugadaCorrecta)
 
         if(!jugadaValidada) {
-            console.log('jugada Equivocada')
-            return false
+            console.log('jugada incorrecta')
+            validacion = false
+            break
         }
-        console.log('jugada correcta')
+        console.log('jugadaCorrecta')
     }
+
+    return new Promise((resolver) => resolver(validacion))
+
+
 }
 
 
@@ -148,6 +155,11 @@ const capturarInput = () => {
             resolver(extraerNumero(e.target.id))
         }))
     })
+}
+
+
+function deshabilitarInput() {
+    DOM.botones.forEach(boton => boton.removeEventListener('click', activarBoton, true))
 }
 
 const extraerNumero = (string) => {
