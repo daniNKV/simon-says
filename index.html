@@ -22,16 +22,26 @@
 
         <div class="inicio"  id="iniciar-juego">
             <div class="anillo">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
 
             <h3 class="centro">Jugar</h3>
 
         </div>
 
-        <div class="juego oculto" id="tablero">
+        <div class="juego oculto" id="tablero"> 
+
+            <div class="juego__info">
+                <div class="stats oculto">
+                    <h3>Score: <span class="score">325000</span></h3>
+                    <h3>Best Score: <span class="top-score">1023333002</span></h3>
+                </div>
+                
+                <div class="mensajes">
+                    <h3 id="mensaje"></h3>
+                </div>
+                
+            </div>
 
             <button data-sound="1" class="juego__boton " id="boton1"></button>
            
@@ -46,11 +56,6 @@
             <audio id='sonido3' src="sound/f5.mp3"></audio>
             <audio id='sonido4' src="sound/g5.mp3"></audio>
 
-            <div class="stats">
-                <h3>Score: <span class="score">325000</span></h3>
-
-                <h3>Best Score: <span class="top-score">1023333002</span></h3>
-            </div>
         </div>
 
     </main>

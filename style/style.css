@@ -2,9 +2,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Tourney:ital,wght@0,400;1,900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
 :root {
   --ff-ppal : 'Quicksand', sans-serif;
-  --ff-logo: 'Tourney', cursive;
+  --ff-bkp1: 'Tourney', cursive;
+  --ff-logo: 'Press Start 2P', cursive;
+  --ff-msj: 'Staatliches', cursive;
   --clr-bg: #393E46;
 }
 html {
@@ -39,7 +45,7 @@ main {
 
 
 h1 {
-  font-size: 5rem;
+  font-size: 4rem;
 }
 h2 {
   font-size: 3.5rem;
@@ -51,7 +57,6 @@ p {
 .logo {
   font-family: var(--ff-logo);
   color: #fff;
-  border: 1px solid #fff;
   padding: 2rem;
   margin-top: 2rem;
   border-radius: .5rem
@@ -62,27 +67,28 @@ p {
 
 
 .inicio {
-  position: relative;
   align-self: center;
   margin-top: 15vh;
+  display: grid;
   
 }
 
 .centro {
-  position: absolute;
-  top: 37.5%;
-  left: 20%;
   margin: 0;
+  grid-area: a;
+  place-self: center center;
+  z-index: 1;
   cursor: pointer;
   text-align: center;
   font-family: var(--ff-logo);
-  font-size: 4rem;
+  font-size: 2.5rem;
+  text-transform: uppercase;
   color: #fff;
 
 }
 
 .anillo {
-  position: relative;
+  grid-area: a;
   width: 20rem;
   height: 20rem;
   border-radius: 50%;
@@ -132,12 +138,12 @@ p {
 .juego {
   position: relative;
   width: 90vw;
-  height: 60vh;
+  height: 65vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows:  45% 45% 10% ;
+  grid-template-rows:  10% repeat(2, 1fr) ;
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 
@@ -149,15 +155,15 @@ p {
   width: 100%;
   height: 100%;
   border-radius: 2rem;
-  box-shadow: 0 0 30px 10px rgba(0,0,0,0.3);
-  transition: box-shadow 0.05s ease-in-out;
-  filter: brightness(1);
+  box-shadow: 0 0 10px 1px rgba(0,0,0,0.3);
+  transition: box-shadow 0.1s ease-in-out;
+  filter: brightness(0.9);
 
 }
 .juego__boton:focus {
   outline: none;
 }
-.juego__boton:active {
+.juego__boton.activo {
   transform: scale(0.98);
   box-shadow: 0 0 30px 10px rgba(0,0,0,0.2);
   z-index: -1;
@@ -168,24 +174,42 @@ p {
 
 
 
-.stats {
+.juego__info {
   grid-column: 1 / 3;
-  grid-row: 3;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(24, 24, 24, 0.5);
+  border-radius: .5rem;
+  padding: 1rem;
+
+}
+.juego__info .stats {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgba(24, 24, 24, 0.5);
-  border-radius: 5rem;
-
+  width: 100%;
 }
 
-.stats h3 {
-  font-family: var(--ff-ppal);
+
+.juego__info h3 {
   color: #fff;
   font-size: 2rem;
   letter-spacing: 1px;
   text-align: left;
   margin: 0;
+}
+
+.mensajes h3 {
+  font-family: var(--ff-logo);
+  font-size: 2rem;
+}
+
+.stats h3 {
+  font-family: var(--ff-ppal);
+
+
 }
 
 
@@ -231,7 +255,7 @@ p {
   background: linear-gradient(to bottom right, #E82239, #E0593B);
 
 }
-#boton1:active {
+#boton1.activo {
   box-shadow: 0px 0px 45px 10px rgb(175,29,46);
   box-shadow: 0px 0px 45px 0px rgb(223, 50, 73);
   background: radial-gradient(circle, rgb(236, 139, 150) 0%, rgb(195, 40, 40) 100%);
@@ -246,7 +270,7 @@ p {
 
 
 }
-#boton2:active {
+#boton2.activo {
   box-shadow: 0px 0px 45px 0px rgba(46,208,246,1);
   background: radial-gradient(circle, rgb(211, 247, 255) 0%, rgb(40, 216, 255) 100%);
 }
@@ -259,7 +283,7 @@ p {
 
 
 }
-#boton3:active {
+#boton3.activo {
   box-shadow: 0px 0px 45px 0px rgba(43,198,107,1);
   background: radial-gradient(circle, rgb(186, 255, 215) 0%, rgba(43,198,107,1) 100%);
 }
@@ -272,7 +296,7 @@ p {
 
 
 }
-#boton4:active {
+#boton4.activo {
   box-shadow: 0px 0px 45px 0px rgba(227,225,52,1);
   background: radial-gradient(circle, rgb(255, 254, 201) 0%, rgb(240, 225, 22) 100%);
 
@@ -281,6 +305,6 @@ p {
 
 
 .oculto {
-  display: none;
+  display: none !important;
 }
 
