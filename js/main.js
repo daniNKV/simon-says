@@ -114,7 +114,6 @@ const juegaHumano = async (simonTermino, rondaAComparar) => {
     anunciarTurno('usted')
 
     const humanoGano = validarRonda(rondaAComparar)
-    console.log(humanoGano)
 //    return humanoGano === true ? true : false
 
 
@@ -122,7 +121,18 @@ const juegaHumano = async (simonTermino, rondaAComparar) => {
 }  
 
 const validarRonda = (rondaCompleta) => {
-    return rondaCompleta.every((jugada, index) =>  )
+    return rondaCompleta.forEach(async (jugadaCorrecta) => {
+        const jugadaRealizada = await capturarInput();
+
+        const jugadaValidada = validarInput(jugadaRealizada, jugadaCorrecta)
+        console.log(jugadaValidada)
+    })
+}
+
+const validarJugada = async (jugadaCorrecta) => {
+
+    return validarInput(jugadaRealizada, jugadaCorrecta)
+
 }
 
 const validarInput = (botonPresionado, botonCorrecto) => {
@@ -130,18 +140,17 @@ const validarInput = (botonPresionado, botonCorrecto) => {
 }
 
 const capturarInput = () => {
-    DOM.botones.forEach(
-        boton => boton.addEventListener('click', e =>  {
+    return new Promise((resolver) => {
+        DOM.botones.forEach(boton => boton.addEventListener('click', e =>  {
             activarBoton(e.target)
 
-            return Number(extraerNumero(e.target.id))
-        })
-    )
+            resolver(extraerNumero(e.target.id))
+        }))
+    })
 }
 
 const extraerNumero = (string) => {
-    console.log(string.slice(string.search(/^[0-9]$/)))
-    return string.slice(string.search(/^[0-9]$/))
+    return Number(string.slice(string.search(/^[0-9]$/)))
 }
 
 /*
