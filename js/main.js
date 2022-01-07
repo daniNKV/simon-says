@@ -120,20 +120,21 @@ const juegaHumano = async (simonTermino, rondaAComparar) => {
 
 }  
 
-const validarRonda = (rondaCompleta) => {
-    return rondaCompleta.forEach(async (jugadaCorrecta) => {
+const validarRonda = async (rondaCompleta) => {
+    let validacion = false;
+    for( jugadaCorrecta of rondaCompleta ) {
         const jugadaRealizada = await capturarInput();
-
         const jugadaValidada = validarInput(jugadaRealizada, jugadaCorrecta)
-        console.log(jugadaValidada)
-    })
+
+        if(!jugadaValidada) {
+            console.log('jugada Equivocada')
+            return false
+        }
+        console.log('jugada correcta')
+    }
 }
 
-const validarJugada = async (jugadaCorrecta) => {
 
-    return validarInput(jugadaRealizada, jugadaCorrecta)
-
-}
 
 const validarInput = (botonPresionado, botonCorrecto) => {
     return botonPresionado === botonCorrecto ? true : false
