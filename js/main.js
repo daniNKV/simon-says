@@ -21,7 +21,7 @@ const Tablero = {
 
 class Partida {
     jugadas = { 
-        simon: [2,3],
+        simon: [2,3,3,4,2],
         humano: []
     }
     score = 0
@@ -114,42 +114,48 @@ const juegaHumano = async (simonTermino, rondaAComparar) => {
     anunciarTurno('usted')
 
     const humanoGano = validarRonda(rondaAComparar)
-
+    console.log(humanoGano)
 //    return humanoGano === true ? true : false
 
 
 
 }  
 
-const validarRonda = (rondaValida) => {
-
-    
-}
-
-const escucharJugador = (inputCorrecto) => {
-    const inputJugador = habilitarInput(validarInput(), inputCorrecto)
+const validarRonda = (rondaCompleta) => {
+    return rondaCompleta.every((jugada, index) =>  )
 }
 
 const validarInput = (botonPresionado, botonCorrecto) => {
     return botonPresionado === botonCorrecto ? true : false
 }
 
-// SIDE EFFECTS
-function anunciarTurno(jugador) {
-    const lugarMensaje = Tablero.mensaje
-
-    lugarMensaje.innerText = `Juega ${jugador}... `
-}
-
-function habilitarInput(funcionValidar, inputCorrecto) {
+const capturarInput = () => {
     DOM.botones.forEach(
         boton => boton.addEventListener('click', e =>  {
             activarBoton(e.target)
 
-            return funcionValidar(e.target, inputCorrecto)
+            return Number(extraerNumero(e.target.id))
         })
     )
 }
+
+const extraerNumero = (string) => {
+    console.log(string.slice(string.search(/^[0-9]$/)))
+    return string.slice(string.search(/^[0-9]$/))
+}
+
+/*
+const obtenerInputCorrecto = (arrayRonda, indexActual) => {
+    return Number(arrayRonda.slice(indexActual, indexActual + 1).toString())
+}
+*/
+
+// SIDE EFFECTS
+function anunciarTurno(jugador) {
+    Tablero.mensaje.innerText = `Juega ${jugador}... `
+}
+
+
 
 function activarBoton(elemento) {
     elemento.classList.add('activo')
