@@ -21,7 +21,7 @@ const Tablero = {
 
 class Partida {
     jugadas = { 
-        simon: [2,3,3,4,2],
+        simon: [],
         humano: []
     }
     score = 0
@@ -40,7 +40,7 @@ const siguienteRonda = (objeto) => {
 
 }
 const juegaSimon = (secuenciaAReproducir) => {
-    anunciarTurno('Simon');
+    escribirMensaje('Juega Simon...');
     
     return reproducirSecuencia(secuenciaAReproducir)
 
@@ -103,17 +103,20 @@ async function iniciarRonda(rondaAnterior) {
 
     const rondaHumano = await juegaHumano(juegaSimon(rondaSimon), rondaSimon)
 
-    if(!rondaHumano) {
+    if(rondaHumano) {
+        iniciarRonda(rondaActual)
+    }
+
+    else {
         perder()
     }
 
-    iniciarRonda(rondaActual)
 }
 
 const juegaHumano = async (simonTermino, rondaAComparar) => {
     await simonTermino
     
-    anunciarTurno('usted')
+    escribirMensaje('Juega usted')
 
     const humanoGano = await validarRonda(rondaAComparar)
 
@@ -173,8 +176,8 @@ const obtenerInputCorrecto = (arrayRonda, indexActual) => {
 */
 
 // SIDE EFFECTS
-function anunciarTurno(jugador) {
-    Tablero.mensaje.innerText = `Juega ${jugador}... `
+function escribirMensaje(mensaje) {
+    Tablero.mensaje.innerText = `${mensaje}... `
 }
 
 
@@ -183,18 +186,34 @@ function activarBoton(elemento) {
     elemento.classList.add('activo')
     setTimeout(() => elemento.classList.remove('activo'), 250)
 }
+function perder() {
+    escribirMensaje('Perdiste :(')
+
+    setTimeout(esconderTablero, 3000)
+}
 
 function prepararTablero() {
     ocultarBotonInicio()
     traerTablero()
 }
 
+function esconderTablero() {
+    ocultarTablero()
+    mostrarBotonInicio()
+}
+
 
 function ocultarBotonInicio(){
     DOM.botonInicio.classList.add('oculto')
 }
+function mostrarBotonInicio() {
+    DOM.botonInicio.classList.remove('oculto')
+}
 function traerTablero() {
     DOM.tablero.classList.remove('oculto')
+}
+function ocultarTablero() {
+    DOM.tablero.classList.add('oculto')
 }
 
 function reproducirSonido(key) {
