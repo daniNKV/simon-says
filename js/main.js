@@ -29,60 +29,6 @@ class Partida {
     ronda = 0   
 }
 
-const siguienteRonda = (objeto) => {
-    let nuevaRonda = Object.assign({}, objeto)
-    let {jugadas, ronda} = nuevaRonda
-
-    jugadas.simon = agregarJugada(obtenerSecuenciaSimon(jugadas))
-    nuevaRonda.ronda = aumentarRonda(ronda)
-
-    return nuevaRonda
-
-}
-const juegaSimon = (secuenciaAReproducir) => {
-    escribirMensaje('Juega Simon...');
-    
-    return reproducirSecuencia(secuenciaAReproducir)
-
-}
-
-const reproducirSecuencia = async (secuencia) => {
-    const {...boton} = Tablero.botones
-
-    for( movimiento of secuencia ) {
-        await esperar(1000)
-        activarBoton(boton[movimiento])
-    }
-
-    return true
-}
-
-const esperar = (tiempo) => {
-    return new Promise((resolucion) => setTimeout(resolucion, tiempo))
-  }
-
-
-
-const obtenerSecuenciaSimon = (objetoJugadas) => {
-    return objetoJugadas.simon
-    
-}
-const aumentarRonda = (number) => {
-    return number++
-}
-
-const agregarJugada = (array) => {
-    return array.concat(crearJugadaRandom(4))
-}
-
-const crearJugadaRandom = (cantidadBotones) => {
-    return Math.floor((Math.random()) * cantidadBotones) + 1
-}
-const obtenerRonda = (array) => {
-    return array.length
-}
-
-
 DOM.botonInicio.addEventListener('click', () => iniciarPartida())
 
 function iniciarPartida() {
@@ -113,6 +59,43 @@ async function iniciarRonda(rondaAnterior) {
 
 }
 
+
+const siguienteRonda = (objeto) => {
+    let nuevaRonda = Object.assign({}, objeto)
+    let {jugadas, ronda} = nuevaRonda
+
+    jugadas.simon = agregarJugada(obtenerSecuenciaSimon(jugadas))
+    nuevaRonda.ronda = aumentarRonda(ronda)
+
+    return nuevaRonda
+
+}
+const juegaSimon = (secuenciaAReproducir) => {
+    escribirMensaje('Juega Simon');
+    
+    return reproducirSecuencia(secuenciaAReproducir)
+
+}
+
+const reproducirSecuencia = async (secuencia) => {
+    const {...boton} = Tablero.botones
+
+    for( movimiento of secuencia ) {
+        await esperar(1000)
+        activarBoton(boton[movimiento])
+    }
+
+    return true
+}
+
+const esperar = (tiempo) => {
+    return new Promise((resolucion) => setTimeout(resolucion, tiempo))
+  }
+
+const obtenerSecuenciaSimon = (objetoJugadas) => {
+    return objetoJugadas.simon  
+}
+
 const juegaHumano = async (simonTermino, rondaAComparar) => {
     await simonTermino
     
@@ -122,8 +105,6 @@ const juegaHumano = async (simonTermino, rondaAComparar) => {
 
     return humanoGano === true ? true : false
 
-
-
 }  
 
 const validarRonda = async (rondaCompleta) => {
@@ -132,19 +113,12 @@ const validarRonda = async (rondaCompleta) => {
         const jugadaValidada = validarInput(await capturarInput(), jugadaCorrecta)
 
         if(!jugadaValidada) {
-            console.log('jugada incorrecta')
             validacion = false
             break
         }
-        console.log('jugadaCorrecta')
     }
-
     return new Promise((resolver) => resolver(validacion))
-
-
 }
-
-
 
 const validarInput = (botonPresionado, botonCorrecto) => {
     return botonPresionado === botonCorrecto ? true : false
@@ -160,32 +134,42 @@ const capturarInput = () => {
     })
 }
 
-
-function deshabilitarInput() {
-    DOM.botones.forEach(boton => boton.removeEventListener('click', activarBoton, true))
-}
-
 const extraerNumero = (string) => {
     return Number(string.slice(string.search(/^[0-9]$/)))
 }
 
-/*
-const obtenerInputCorrecto = (arrayRonda, indexActual) => {
-    return Number(arrayRonda.slice(indexActual, indexActual + 1).toString())
+const aumentarRonda = (number) => {
+    return number++
 }
-*/
+
+const agregarJugada = (array) => {
+    return array.concat(crearJugadaRandom(4))
+}
+
+const crearJugadaRandom = (cantidadBotones) => {
+    return Math.floor((Math.random()) * cantidadBotones) + 1
+}
+
+const obtenerRonda = (array) => {
+    return array.length
+}
+
+
 
 // SIDE EFFECTS
 function escribirMensaje(mensaje) {
     Tablero.mensaje.innerText = `${mensaje}... `
 }
 
-
+function deshabilitarInput() {
+    DOM.botones.forEach(boton => boton.removeEventListener('click', activarBoton, true))
+}
 
 function activarBoton(elemento) {
     elemento.classList.add('activo')
     setTimeout(() => elemento.classList.remove('activo'), 250)
 }
+
 function perder() {
     escribirMensaje('Perdiste xd')
 
