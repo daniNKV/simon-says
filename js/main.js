@@ -187,7 +187,7 @@ function activarBoton(elemento) {
     setTimeout(() => elemento.classList.remove('activo'), 250)
 }
 function perder() {
-    escribirMensaje('Perdiste :(')
+    escribirMensaje('Perdiste xd')
 
     setTimeout(esconderTablero, 3000)
 }
