@@ -6,14 +6,21 @@
 }
 
 const Tablero = {
+    stats : document.querySelector('.stats'),
+    mensaje : document.getElementById('mensaje'),
     botones : {
         1 : document.getElementById('boton1'),
         2 : document.getElementById('boton2'),
         3 : document.getElementById('boton3'),
         4 : document.getElementById('boton4')
     },
-    stats : document.querySelector('.stats'),
-    mensaje : document.getElementById('mensaje') 
+    sonidos_URL: {
+        1 : 'sound/c5.mp3',
+        2 : 'sound/e5.mp3',
+        3 : 'sound/f5.mp3',
+        4 : 'sound/g5.mp3'
+    },
+
 }
 
 
@@ -79,7 +86,7 @@ const reproducirSecuencia = async (secuencia) => {
     const {...boton} = Tablero.botones
 
     for( movimiento of secuencia ) {
-        await esperar(1000)
+        await esperar(750)
         activarBoton(boton[movimiento])
     }
 
@@ -202,5 +209,7 @@ function ocultarTablero() {
 }
 
 function reproducirSonido(key) {
-    document.getElementById(`sonido${key}`).play()
+    const sonidoAReproducir = new Audio(Tablero.sonidos_URL[key])
+
+    sonidoAReproducir.play()
 }
