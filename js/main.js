@@ -2,8 +2,6 @@
  const DOM = { 
     botonInicio : document.getElementById('iniciar-juego'),
     tablero: document.getElementById('tablero'),
-    stats : document.querySelector('.stats'),
-    boton1 : document.getElementById('boton1'),
     botones : document.querySelectorAll('.juego__boton')
 }
 
@@ -14,7 +12,7 @@ const Tablero = {
         3 : document.getElementById('boton3'),
         4 : document.getElementById('boton4')
     },
-
+    stats : document.querySelector('.stats'),
     mensaje : document.getElementById('mensaje') 
 }
 
@@ -167,6 +165,9 @@ function deshabilitarInput() {
 
 function activarBoton(elemento) {
     elemento.classList.add('activo')
+
+    reproducirSonido(extraerNumero(elemento.id))
+    
     setTimeout(() => elemento.classList.remove('activo'), 250)
 }
 
@@ -201,5 +202,5 @@ function ocultarTablero() {
 }
 
 function reproducirSonido(key) {
-    document.getElementById(key).play()
+    document.getElementById(`sonido${key}`).play()
 }
