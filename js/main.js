@@ -36,30 +36,31 @@ class Partida {
 
 DOM.botonInicio.addEventListener('click', () => iniciarPartida())
 
-function iniciarPartida() {
+async function iniciarPartida() {
     prepararTablero()    
 
     const nuevaPartida = new Partida
 
-    const partida = iniciarRonda(nuevaPartida)
-
+    const partida = await iniciarRonda(nuevaPartida)
+    console.log(rondaActual)
     return partida
 }
 
 async function iniciarRonda(rondaAnterior) {
     const rondaActual = siguienteRonda(rondaAnterior)
     let {jugadas, score, maxScore, ronda} = rondaActual
-    
     const rondaSimon = obtenerSecuenciaSimon(jugadas)
 
     const rondaHumano = await juegaHumano(juegaSimon(rondaSimon), rondaSimon)
-
+    console.log(rondaActual)
     if(rondaHumano) {
         iniciarRonda(rondaActual)
     }
 
     else {
         perder()
+
+        return rondaActual
     }
 
 }
@@ -76,7 +77,7 @@ const siguienteRonda = (objeto) => {
 
 }
 const juegaSimon = (secuenciaAReproducir) => {
-    escribirMensaje('Juega Simon');
+    escribirMensaje('Juega Simon')
     
     return reproducirSecuencia(secuenciaAReproducir)
 
@@ -168,6 +169,7 @@ function escribirMensaje(mensaje) {
 
 function deshabilitarInput() {
     DOM.botones.forEach(boton => boton.removeEventListener('click', activarBoton, true))
+
 }
 
 function activarBoton(elemento) {
