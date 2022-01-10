@@ -175,7 +175,7 @@ function deshabilitarInput() {
 function activarBoton(elemento) {
     elemento.classList.add('activo')
 
-    reproducirSonido(extraerNumero(elemento.id))
+    reproducirSonido(elemento.dataset.sound)
     
     setTimeout(() => elemento.classList.remove('activo'), 250)
 }
