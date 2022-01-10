@@ -44,7 +44,7 @@ async function iniciarPartida() {
     const nuevaPartida = new Partida
 
     const partida = await iniciarRonda(nuevaPartida)
-    console.log(rondaActual)
+
     return partida
 }
 
@@ -54,7 +54,7 @@ async function iniciarRonda(rondaAnterior) {
     const rondaSimon = obtenerSecuenciaSimon(jugadas)
 
     const rondaHumano = await juegaHumano(juegaSimon(rondaSimon), rondaSimon)
-    console.log(rondaActual)
+
     if(rondaHumano) {
         iniciarRonda(rondaActual)
     }
@@ -166,12 +166,12 @@ const obtenerRonda = (array) => {
 function escribirMensaje(mensaje) {
     Tablero.mensaje.innerText = `${mensaje}... `
 }
-
+/*
 function deshabilitarInput() {
     DOM.botones.forEach(boton => boton.removeEventListener('click', activarBoton, true))
 
 }
-
+*/
 function activarBoton(elemento) {
     elemento.classList.add('activo')
 
