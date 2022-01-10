@@ -204,6 +204,7 @@ p {
 .mensajes h3 {
   font-family: var(--ff-logo);
   font-size: 2rem;
+  text-align: center;
 }
 
 .stats h3 {
