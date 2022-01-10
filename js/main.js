@@ -18,7 +18,9 @@ const Tablero = {
         1 : 'sound/c5.mp3',
         2 : 'sound/e5.mp3',
         3 : 'sound/f5.mp3',
-        4 : 'sound/g5.mp3'
+        4 : 'sound/g5.mp3',
+
+        perder: 'sound/perder.mp3'
     },
 
 }
@@ -59,7 +61,7 @@ async function iniciarRonda(rondaAnterior) {
     }
 
     else {
-        perder()
+        perder(rondaActual)
     }
 
 }
@@ -178,10 +180,12 @@ function activarBoton(elemento) {
     setTimeout(() => elemento.classList.remove('activo'), 250)
 }
 
-function perder() {
-    escribirMensaje('Perdiste xd')
+function perder(rondaActual) {
+    const ronda = obtenerRonda(rondaActual.jugadas.simon)
+    reproducirSonido('perder')
+    escribirMensaje(`Perdiste en la ronda ${ronda} xd`)
 
-    setTimeout(esconderTablero, 3000)
+    setTimeout(esconderTablero, 5000)
 }
 
 function prepararTablero() {
