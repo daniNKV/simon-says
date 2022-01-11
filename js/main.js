@@ -168,11 +168,11 @@ function escribirMensaje(mensaje) {
     Tablero.mensaje.innerText = `${mensaje}... `
 }
 function habilitarInput() {
-    DOM.botones.forEach(boton => boton.addEventListener('click', e => activarBoton(e.target)))
+    DOM.botones.forEach(boton => boton.onclick = (e) => activarBoton(e.target) )
 }
 
 function deshabilitarInput() {
-    DOM.botones.forEach(boton => boton.removeEventListener('click', activarBoton))
+    DOM.botones.forEach(boton => boton.onclick = () => {})
 
 }
 
