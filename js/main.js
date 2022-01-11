@@ -217,7 +217,16 @@ function ocultarTablero() {
 }
 
 function reproducirSonido(key) {
+    const sonidoAReproducir = document.getElementById(`sonido${key}`)
+    sonidoAReproducir.currentTime = 0;
+    sonidoAReproducir.play();
+}
+
+
+/*
+function reproducirSonido(key) {
     const sonidoAReproducir = new Audio(Tablero.sonidos_URL[key])
 
     sonidoAReproducir.play()
 }
+*/
