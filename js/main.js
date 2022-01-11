@@ -44,7 +44,7 @@ async function iniciarPartida() {
     const nuevaPartida = new Partida
 
     const partida = await iniciarRonda(nuevaPartida)
-    console.log(rondaActual)
+
     return partida
 }
 
@@ -54,7 +54,7 @@ async function iniciarRonda(rondaAnterior) {
     const rondaSimon = obtenerSecuenciaSimon(jugadas)
 
     const rondaHumano = await juegaHumano(juegaSimon(rondaSimon), rondaSimon)
-    console.log(rondaActual)
+
     if(rondaHumano) {
         iniciarRonda(rondaActual)
     }
@@ -77,6 +77,7 @@ const siguienteRonda = (objeto) => {
 
 }
 const juegaSimon = (secuenciaAReproducir) => {
+    deshabilitarInput()
     escribirMensaje('Juega Simon')
     
     return reproducirSecuencia(secuenciaAReproducir)
@@ -105,6 +106,7 @@ const obtenerSecuenciaSimon = (objetoJugadas) => {
 const juegaHumano = async (simonTermino, rondaAComparar) => {
     await simonTermino
     
+    habilitarInput()
     escribirMensaje('Juega usted')
 
     const humanoGano = await validarRonda(rondaAComparar)
@@ -132,13 +134,12 @@ const validarInput = (botonPresionado, botonCorrecto) => {
 
 const capturarInput = () => {
     return new Promise((resolver) => {
-        DOM.botones.forEach(boton => boton.addEventListener('click', e =>  {
-            activarBoton(e.target)
-
-            resolver(extraerNumero(e.target.id))
-        }))
+        DOM.botones.forEach(boton => {
+            boton.addEventListener('click', e => resolver(extraerNumero(e.target.id)))
+        })
     })
 }
+
 
 const extraerNumero = (string) => {
     return Number(string.slice(string.search(/^[0-9]$/)))
@@ -166,9 +167,12 @@ const obtenerRonda = (array) => {
 function escribirMensaje(mensaje) {
     Tablero.mensaje.innerText = `${mensaje}... `
 }
+function habilitarInput() {
+    DOM.botones.forEach(boton => boton.addEventListener('click', e => activarBoton(e.target)))
+}
 
 function deshabilitarInput() {
-    DOM.botones.forEach(boton => boton.removeEventListener('click', activarBoton, true))
+    DOM.botones.forEach(boton => boton.removeEventListener('click', activarBoton))
 
 }
 
