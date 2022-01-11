@@ -20,7 +20,7 @@ const Tablero = {
         3 : 'sound/f5.mp3',
         4 : 'sound/g5.mp3',
 
-        perder: 'sound/perder.mp3'
+        perder: 'sound/perder.mp3',
     },
 
 }
@@ -217,16 +217,9 @@ function ocultarTablero() {
 }
 
 function reproducirSonido(key) {
-    const sonidoAReproducir = document.getElementById(`sonido${key}`)
+    const sonidoAReproducir = document.getElementById(`sonido-${key}`)
     sonidoAReproducir.currentTime = 0;
     sonidoAReproducir.play();
 }
 
 
-/*
-function reproducirSonido(key) {
-    const sonidoAReproducir = new Audio(Tablero.sonidos_URL[key])
-
-    sonidoAReproducir.play()
-}
-*/
