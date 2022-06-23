@@ -1,0 +1,22 @@
+{
+  "name": "simon-says",
+  "version": "1.0.0",
+  "description": "<h1>Simon Says</h1>",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniNKV/simon-says.git"
+  },
+  "author": "daniNKV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daniNKV/simon-says/issues"
+  },
+  "homepage": "https://github.com/daniNKV/simon-says#readme",
+  "devDependencies": {
+    "cypress": "^10.2.0"
+  }
+}
