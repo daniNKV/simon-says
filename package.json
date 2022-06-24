@@ -4,7 +4,9 @@
   "description": "<h1>Simon Says</h1>",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test open": "cypress open",
+    "server run": "http-server"
   },
   "repository": {
     "type": "git",
