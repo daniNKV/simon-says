@@ -3,6 +3,7 @@
 Primer juego realizado para el curso r/Argentina Programa. 
 
 Construído con Vainilla HTML, CSS & JS.
+Testeado con Cypress
 
 Link al juego: <a href="https://daninkv.github.io/simon-says/">Click aquí</a>
 
